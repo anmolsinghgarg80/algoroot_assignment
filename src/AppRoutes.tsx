@@ -9,6 +9,8 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import DetailsPage from "./pages/DetailsPage";
+import ProfilePage from "./pages/ProfilePage";
+import SettingPage from "./pages/SettingPage";
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
@@ -28,6 +30,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <DetailsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <SettingPage />
               </ProtectedRoute>
             }
           />

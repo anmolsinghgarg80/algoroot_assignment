@@ -1,15 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { 
-  LogOut, 
-  Trash2, 
-  Menu, 
-  X, 
-  Home, 
-  Settings, 
-  User 
-} from "lucide-react";
+import { LogOut, Trash2, Menu, X, Home, Settings, User } from "lucide-react";
 
 const sidebarItems = [
   {
@@ -29,7 +21,7 @@ const sidebarItems = [
   },
 ];
 
-const ResponsiveNavbar: React.FC = () => {
+const Navbar = () => {
   const { user, logout, deleteAccount } = useAuth();
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showNavMenu, setShowNavMenu] = useState(false);
@@ -42,7 +34,7 @@ const ResponsiveNavbar: React.FC = () => {
     const handleClickOutside = (event: MouseEvent) => {
       // Check user menu
       if (
-        userMenuRef.current && 
+        userMenuRef.current &&
         !userMenuRef.current.contains(event.target as Node)
       ) {
         setShowUserMenu(false);
@@ -50,7 +42,7 @@ const ResponsiveNavbar: React.FC = () => {
 
       // Check nav menu
       if (
-        navMenuRef.current && 
+        navMenuRef.current &&
         !navMenuRef.current.contains(event.target as Node)
       ) {
         setShowNavMenu(false);
@@ -66,19 +58,21 @@ const ResponsiveNavbar: React.FC = () => {
   return (
     <div className="bg-slate-300 shadow-sm py-3 px-4 flex justify-between items-center relative">
       <div className="font-bold text-lg md:text-xl text-gray-800 flex items-center">
-        {/* Hamburger Menu for Mobile */}
-        <button 
+        <button
           onClick={() => setShowNavMenu(!showNavMenu)}
           className="md:hidden mr-3"
         >
-          {showNavMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {showNavMenu ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
         </button>
         Algo Root
       </div>
 
-      {/* Mobile Navigation Menu */}
       {showNavMenu && (
-        <div 
+        <div
           ref={navMenuRef}
           className="absolute top-full left-0 right-0 bg-white md:hidden"
         >
@@ -154,4 +148,4 @@ const ResponsiveNavbar: React.FC = () => {
   );
 };
 
-export default ResponsiveNavbar;
+export default Navbar;

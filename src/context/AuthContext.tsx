@@ -43,8 +43,6 @@ export const AuthProvider = ({ children }: Props) => {
     // Find user by email
     const user = existingUsers.find((u: User) => u.email === email);
 
-    console.log(user);
-
     if (!user) {
       throw new Error("User not found");
     }
